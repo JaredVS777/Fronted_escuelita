@@ -2,34 +2,35 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-const FormularioMateria = ({materiaID, textBtn}) => {
+const Formularioauditorio = ({auditorioID, textBtn}) => {
     const navigate = useNavigate()
 
     const [form, setForm] = useState({
-        nombremateria: "",
+        nombreauditorio: "",
         codigo: "",
         creditos: ""
     })
+    
 
     useEffect(()=>{
-        const obtenerMateria = async() => {
+        const obtenerauditorio = async() => {
             try{
-                const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/materias/obtener/${materiaID}`)
-                const materia = response.data
+                const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/auditorios/obtener/${auditorioID}`)
+                const auditorio = response.data
                 setForm({
-                    nombremateria: materia.nombremateria ?? "",
-                    codigo: materia.codigo ?? "",
-                    creditos: materia.creditos ?? ""
+                    nombreauditorio: auditorio.nombreauditorio ?? "",
+                    codigo: auditorio.codigo ?? "",
+                    creditos: auditorio.creditos ?? ""
                 })
             } catch(error){
-                console.log("Error al obtener la materia")
+                console.log("Error al obtener la auditorio")
                 console.log(error)
             }
         }
-        if(materiaID){
-            obtenerMateria()
+        if(auditorioID){
+            obtenerauditorio()
         }
-    },[materiaID])
+    },[auditorioID])
     
     const handleChange = (e) => {
         setForm({
@@ -42,15 +43,15 @@ const FormularioMateria = ({materiaID, textBtn}) => {
         e.preventDefault()
         try{
             let response
-            if(materiaID){
-                response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/materias/actualizar/${materiaID}`, form)
+            if(auditorioID){
+                response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/auditorios/actualizar/${auditorioID}`, form)
                 console.log("actualizacion exitosa")
             }else{
-                response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/materias/register`, form)
+                response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/auditorios/register`, form)
                 console.log("registro exitoso")
             }
             if(response.status == 200 || response.status == 201){
-                navigate('/dashboard/materias')
+                navigate('/dashboard/auditorios')
             }
         }catch(error){
             console.log(error)
@@ -62,16 +63,16 @@ const FormularioMateria = ({materiaID, textBtn}) => {
         <div className="grid grid-cols-3 gap-4">
             <form onSubmit={handleSubmit} className="col-span-3">
                 <div className="flex flex-col space-y-4">
-                    <label htmlFor="nombre" className="block text-sm font-medium text-gray-900 dark:text-white">Nombre de la materia</label>
+                    <label htmlFor="nombre" className="block text-sm font-medium text-gray-900 dark:text-white">Nombre de la auditorio</label>
                     <input
                         type="text"
-                        id="nombremateria"
+                        id="nombreauditorio"
                         className="bg-gray-50 focus:outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Ingrese el nombre completo de la materia"
+                        placeholder="Ingrese el nombre completo de la auditorio"
                         required
-                        name="nombremateria"
+                        name="nombreauditorio"
                         onChange={handleChange}
-                        value={form.nombremateria}
+                        value={form.nombreauditorio}
                     />
 
                     <div className="flex flex-col md:flex-row md:space-x-4">
@@ -94,7 +95,7 @@ const FormularioMateria = ({materiaID, textBtn}) => {
                                 type="text"
                                 id="creditos"
                                 className="bg-gray-50 focus:outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Ingrese los números de créditos correspondientes a la materia"
+                                placeholder="Ingrese los números de créditos correspondientes a la auditorio"
                                 required
                                 name="creditos"
                                 onChange={handleChange}
@@ -115,4 +116,4 @@ const FormularioMateria = ({materiaID, textBtn}) => {
     )
 }
 
-export default FormularioMateria
+export default Formularioauditorio

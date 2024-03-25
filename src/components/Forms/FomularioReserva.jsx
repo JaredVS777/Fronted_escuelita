@@ -2,15 +2,15 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const FomularioMatricula = ({matriculaID, textBtn}) => {
+const FomularioReserva = ({reservaID, textBtn}) => {
 
     const navigate = useNavigate()
     const [form, setForm] = useState({
-        nombreMateria: "",
-        estudiante: ""
+        nombreauditorio: "",
+        conferencista: ""
     })
 
-    const [materias, setMaterias] = useState([])
+    const [auditorios, setauditorios] = useState([])
     
     const handleChange = (e) => {
         setForm({
@@ -20,48 +20,48 @@ const FomularioMatricula = ({matriculaID, textBtn}) => {
     }
     
     useEffect(()=>{
-        const obtenerMaterias = async() => {
+        const obtenerauditorios = async() => {
             try{
-                const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/materias/listar`)
-                setMaterias(response.data)
+                const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/auditorios/listar`)
+                setauditorios(response.data)
             }catch(error){
                 console.log(error)
             }
         }
-        obtenerMaterias()   
+        obtenerauditorios()   
     }, [])
 
     useEffect(() => {
-        const obtenerMatricula = async() => {
+        const obtenerreserva = async() => {
             try{
-                const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/matriculas/mostrar/${matriculaID}`)
-                const matricula = response.data
+                const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/reservas/mostrar/${reservaID}`)
+                const reserva = response.data
                 setForm({
-                    estudiante: matricula.estudiante ?? "",
-                    nombreMateria: matricula.nombreMateria ?? ""
+                    conferencista: reserva.conferencista ?? "",
+                    nombreauditorio: reserva.nombreauditorio ?? ""
                 })
             }catch(error){
                 console.log(error)
             }
         }
-        if(matriculaID){
-            obtenerMatricula()
+        if(reservaID){
+            obtenerreserva()
         }
-    },[matriculaID])
+    },[reservaID])
 
     const handleSubmit = async(e) => {
         e.preventDefault()
         try{
             let response
-            if(matriculaID){
-                response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/matriculas/actualizar/${matriculaID}`, form)
+            if(reservaID){
+                response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/reservas/actualizar/${reservaID}`, form)
                 console.log("actualizion exitosa")
             }else{
-                response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/matriculas/register`, form)
+                response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/reservas/register`, form)
                 console.log("registro exitoso")
             }
             if(response.status == 201 || response.status == 200){
-                navigate('/dashboard/matriculas')
+                navigate('/dashboard/reservas')
             }
         }catch(error){
             console.log(form)
@@ -73,36 +73,36 @@ const FomularioMatricula = ({matriculaID, textBtn}) => {
         <div className="grid grid-cols-3 gap-4">
         <form onSubmit={handleSubmit} className="col-span-3">
             <div className="flex flex-col space-y-4">
-                <label htmlFor="estudiante" className="block text-sm font-medium text-gray-900 dark:text-white">Nombre del estudiante</label>
+                <label htmlFor="conferencista" className="block text-sm font-medium text-gray-900 dark:text-white">Nombre del conferencista</label>
                 <input
                     type="text"
-                    id="estudiante"
+                    id="conferencista"
                     className="bg-gray-50 focus:outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Ingrese el nombre completo del estudiante"
+                    placeholder="Ingrese el nombre completo del conferencista"
                     required
-                    name="estudiante"
+                    name="conferencista"
                     onChange={handleChange}
-                    value={form.estudiante}
+                    value={form.conferencista}
                 />
                 <div className="flex flex-col md:flex-row md:space-x-4">
                     <div className="flex-1">
-                    <label htmlFor="materias" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Seleccione una materia</label>
+                    <label htmlFor="auditorios" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Seleccione una auditorio</label>
                         <select
-                            id="nombreMateria"
+                            id="nombreauditorio"
                             className="focus:outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            name="nombreMateria" 
+                            name="nombreauditorio" 
                             onChange={handleChange} 
-                            value={form.nombreMateria}
+                            value={form.nombreauditorio}
                         >
-                            <option>Materias Disponibles</option>
-                            {materias && materias.length > 0 ? (
-                                materias.map((materia) => (
-                                    <option key={materia._id} value={materia.nombremateria}>
-                                        {materia.nombremateria}
+                            <option>auditorios Disponibles</option>
+                            {auditorios && auditorios.length > 0 ? (
+                                auditorios.map((auditorio) => (
+                                    <option key={auditorio._id} value={auditorio.nombreauditorio}>
+                                        {auditorio.nombreauditorio}
                                     </option>
                                 ))
                             ) : (
-                                <option disabled>No existen materias registradas</option>
+                                <option disabled>No existen auditorios registradas</option>
                             )}
                         </select>
 
@@ -120,4 +120,4 @@ const FomularioMatricula = ({matriculaID, textBtn}) => {
     )
 }
 
-export default FomularioMatricula
+export default FomularioReserva

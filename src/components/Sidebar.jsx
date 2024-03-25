@@ -40,7 +40,7 @@ export default function Sidebar({ children }) {
               <div className="leading-4">
                 <h2 className="font-semibold text-sm">{localStorage.getItem('username')}</h2>
 
-                <span className="text-xs text-gray-600">Usuario</span>
+                <span className="text-xs text-gray-600">Julio</span>
               </div>
 
               <div >

@@ -21,7 +21,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/login`, { email, password });
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL3}/api/login`, { email, password });
       if (response.status === 200) {
         localStorage.setItem('logged', 'true');
         
@@ -35,7 +35,7 @@ const Login = () => {
         });
       }
     } catch (error) {
-      setMensaje({ response: error.response.data.error, tipo: false });
+      setMensaje({ response: error, tipo: false });
       console.log(error.response);
       setTimeout(() => {
         setMensaje({});
@@ -48,7 +48,7 @@ const Login = () => {
       <form onSubmit={handleSubmit} className="flex items-center justify-center h-screen">
         <div className="relative flex flex-col m-6 space-y-8 bg-white shadow-2xl rounded-2xl md:flex-row md:space-y-0">
           <div className="flex flex-col justify-center p-8 md:p-12">
-            <span className="mb-2 text-4xl font-bold">Caso 1</span>
+            <span className="mb-2 text-4xl font-bold">Caso conferencista </span>
             <span className="font-light text-gray-400 mb-4">Por favor ingresa tus credenciales</span>
 
             {Object.keys(mensaje).length > 0 && <Mensaje tipo={mensaje.tipo}>{mensaje.response}</Mensaje>}

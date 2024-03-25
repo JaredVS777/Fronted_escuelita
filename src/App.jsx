@@ -4,17 +4,17 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Dashboard from './layout/Dashboard'
 
-import ListarEstudiantes from './pages/estudiantes/ListarEstudiantes'
-import AgregarEstudiante from './pages/estudiantes/AgregarEstudiante'
-import ActualizarEstudiante from './pages/estudiantes/ActualizarEstudiante'
+import Listarconferencista from './pages/conferencistas/ListarConferencistas'
+import AgregarConferencista from './pages/conferencistas/AgregarConferencista'
+import ActualizarConferencista from './pages/conferencistas/ActualizarConferencista'
 
-import ListarMaterias from './pages/materias/ListarMaterias'
-import AgregarMateria from './pages/materias/AgregarMateria'
-import ActualizarMateria from './pages/materias/ActualizarMateria'
+import Listarauditorios from './pages/auditorios/ListarAuditorios'
+import AgregarAuditorio from './pages/auditorios/AgregarAuditorio'
+import ActualizarAuditorio from './pages/auditorios/ActualizarAuditorio'
 
-import ListarMatriculas from './pages/matriculas/ListarMatriculas'
-import AgregarMatricula from './pages/matriculas/AgregarMatricula'
-import ActualizarMatricula from './pages/matriculas/ActualizarMatricula'
+import Listarreservas from './pages/reservas/ListarReservas'
+import AgregarReserva from './pages/reservas/AgregarReserva'
+import ActualizarReserva from './pages/reservas/ActualizarReserva'
 
 function App() {
 
@@ -26,18 +26,18 @@ function App() {
         <Route path="/login" element={<Login />} />
         
         <Route path="/dashboard/" element={<Dashboard />} >
-          <Route path='estudiantes/' element={<ListarEstudiantes/>}/>
+          <Route path='conferencista/' element={<Listarconferencista/>}/>
 
-          <Route path='estudiantes/agregar-estudiante' element={<AgregarEstudiante/>}/>
-          <Route path='estudiantes/actualizar-estudiante/:id' element={<ActualizarEstudiante/>}/>
+          <Route path='conferencista/agregar-conferencista' element={<AgregarConferencista/>}/>
+          <Route path='conferencista/actualizar-conferencista/:id' element={<ActualizarConferencista/>}/>
 
-          <Route path='materias' element={<ListarMaterias/>}/>
-          <Route path='materias/agregar-materia' element={<AgregarMateria/>}/>
-          <Route path='materias/actualizar-materia/:id' element={<ActualizarMateria/>}/>
+          <Route path='auditorios' element={<Listarauditorios/>}/>
+          <Route path='auditorios/agregar-auditorio' element={<AgregarAuditorio/>}/>
+          <Route path='auditorios/actualizar-auditorio/:id' element={<ActualizarAuditorio/>}/>
 
-          <Route path='matriculas' element={<ListarMatriculas/>}/>
-          <Route path='matriculas/agregar-matricula' element={<AgregarMatricula/>}/>
-          <Route path='matriculas/actualizar-matricula/:id' element={<ActualizarMatricula/>}/>
+          <Route path='reservas' element={<Listarreservas/>}/>
+          <Route path='reservas/agregar-reserva' element={<AgregarReserva/>}/>
+          <Route path='reservas/actualizar-reserva/:id' element={<ActualizarReserva/>}/>
         </Route>
 
         <Route path="*" element={<NotFound />} /> 

@@ -5,7 +5,7 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import NotAuthorized from '../pages/NotAuthorized';
 
 const Dashboard = () => {
-  const [selectedItem, setSelectedItem] = useState('/dashboard/estudiantes');
+  const [selectedItem, setSelectedItem] = useState('/dashboard/conferencistas');
   const { state: locationState, } = useLocation();
   const [logged, setLogged] = useState(false); // Estado de autenticación
   const [renderNotAuthorized, setRenderNotAuthorized] = useState(false);
@@ -37,28 +37,28 @@ const Dashboard = () => {
       {logged ? (
         <div className="flex">
           <Sidebar>
-            <Link to="/dashboard/estudiantes">
+            <Link to="/dashboard/conferencistas">
               <SidebarItem
                 icon={<UsersRound size={20} />}
-                text="Estudiantes"
-                active={isItemSelected('/dashboard/estudiantes')}
-                onClick={() => handleItemClick('/dashboard/estudiantes')}
+                text="conferencistas"
+                active={isItemSelected('/dashboard/conferencistas')}
+                onClick={() => handleItemClick('/dashboard/conferencistas')}
               />
             </Link>
-            <Link to="/dashboard/materias">
+            <Link to="/dashboard/auditorios">
               <SidebarItem
                 icon={<Notebook size={20} />}
-                text="Materias"
-                active={isItemSelected('/dashboard/materias')}
-                onClick={() => handleItemClick('/dashboard/materias')}
+                text="auditorios"
+                active={isItemSelected('/dashboard/auditorios')}
+                onClick={() => handleItemClick('/dashboard/auditorios')}
               />
             </Link>
-            <Link to="/dashboard/matriculas">
+            <Link to="/dashboard/reservas">
               <SidebarItem
                 icon={<SquarePen size={20} />}
                 text="Matrículas"
-                active={isItemSelected('/dashboard/matriculas')}
-                onClick={() => handleItemClick('/dashboard/matriculas')}
+                active={isItemSelected('/dashboard/reservas')}
+                onClick={() => handleItemClick('/dashboard/reservas')}
               />
             </Link>
           </Sidebar>

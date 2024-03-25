@@ -1,26 +1,26 @@
 import Search from "../../components/Search"
 import AddRecordButton from "../../components/AddRecordButton"
-import TablaMaterias from "../../components/Tablas/TablaMaterias"
+import Tablaauditorios from "../../components/Tablas/TablaAuditorios"
 
-const ListarMaterias = () => {
+const Listarauditorios = () => {
     return(
         <>
             <div className="p-5 flex flex-col">
-                <h1 className=" text-2xl font-bold mb-4">Módulo de Materias</h1>
-                <span className="font-medium text-gray-500 mb-8">Revisa los estudiantes .. no tengo ideas xD</span>
+                <h1 className=" text-2xl font-bold mb-4">Módulo de auditorios</h1>
+                <span className="font-medium text-gray-500 mb-8">Revisa los conferencistas .. no tengo ideas xD</span>
                 <div className="flex flex-row justify-between">
                     <div className="flex-grow">
                         <Search/>
                     </div>
-                    <AddRecordButton text="materias" to="/dashboard/materias/agregar-materia" />
+                    <AddRecordButton text="auditorios" to="/dashboard/auditorios/agregar-auditorio" />
                 </div>
                 <div className="flex flex-col sm:flex-row sm:justify-between">
                     <div className="lg:w-full sm:w-1/2">
-                        <TablaMaterias/>
+                        <Tablaauditorios/>
                     </div>
                 </div>
             </div>
         </>
     )
 }
-export default ListarMaterias
+export default Listarauditorios

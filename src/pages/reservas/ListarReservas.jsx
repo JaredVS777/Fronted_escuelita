@@ -1,8 +1,8 @@
 import Search from "../../components/Search"
 import AddRecordButton from "../../components/AddRecordButton"
-import TablaMatriculas from "../../components/Tablas/TablaMatriculas"
+import TablaReservas from "../../components/Tablas/TablaReservas"
 
-const ListarMatriculas = () => {
+const ListarReservas = () => {
     return (
         <div className="p-5 flex flex-col">
         <h1 className=" text-2xl font-bold mb-4">Módulo de Matículas</h1>
@@ -11,15 +11,15 @@ const ListarMatriculas = () => {
             <div className="flex-grow">
                 <Search/>
             </div>
-            <AddRecordButton text="matrícula" to="/dashboard/matriculas/agregar-matricula" />
+            <AddRecordButton text="matrícula" to="/dashboard/reservas/agregar-reserva" />
         </div>
         <div className="flex flex-col sm:flex-row sm:justify-between">
             <div className="lg:w-full sm:w-1/2">
-                <TablaMatriculas/>
+                <TablaReservas/>
             </div>
         </div>
     </div>
     );
 };
 
-export default ListarMatriculas;
+export default ListarReservas;
